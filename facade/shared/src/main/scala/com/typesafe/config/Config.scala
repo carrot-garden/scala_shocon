@@ -35,11 +35,13 @@ object ConfigFactory {
 
   def load(): Config = macro ConfigLoader.loadDefaultImpl
 
-  def load(cl: ClassLoader): Config = macro ConfigLoader.loadDefaultImplCL
+  // FIXME native
+  //def load(cl: ClassLoader): Config = macro ConfigLoader.loadDefaultImplCL
 
   def defaultReference(): Config = macro ConfigLoader.loadDefaultImpl
 
-  def defaultReference(cl: ClassLoader): Config = macro ConfigLoader.loadDefaultImplCL
+  // FIXME native
+  //def defaultReference(cl: ClassLoader): Config = macro ConfigLoader.loadDefaultImplCL
 
   def empty() = Config(shocon.Config("{}"))
 

@@ -76,5 +76,7 @@ object ConfigLoader {
 
 
   def loadDefaultImpl(c: Context)() = loadDefault(c)
+  
   def loadDefaultImplCL(c: Context)(cl: c.Expr[ClassLoader]) = loadDefault(c)
+  
 }

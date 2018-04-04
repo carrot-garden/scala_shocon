@@ -3,8 +3,8 @@ sudo: false
 language: scala
 
 scala:
-  - "2.12.4"
   - "2.11.11"
+  - "2.12.4"
 
 jdk: oraclejdk8
 
@@ -21,21 +21,15 @@ env:
   - TRAVIS_NODE_VERSION="9.10.1"
 
 install:
-  - source travis/setNodeVersion.sh
+  - travis/setupLLVM.sh
+  - travis/setNodeVersion.sh
+
+script:
+  - travis/cleanCache.sh
+  - sbt ++$TRAVIS_SCALA_VERSION test
+  - travis/testSbtPlugin.sh
 
 cache:
   directories:
     - $HOME/.ivy2/cache
     - $HOME/.sbt
-
-script:
-  - sbt ++$TRAVIS_SCALA_VERSION test
-  - source travis/testSbtPlugin.sh
-  # Tricks to avoid unnecessary cache updates, from
-  # http://www.scala-sbt.org/0.13/docs/Travis-CI-with-sbt.html
-  - find $HOME/.sbt -name "*.lock" | xargs rm
-  - find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm
-cache:
-  directories:
-    - $HOME/.ivy2/cache
-    - $HOME/.sbt/boot/

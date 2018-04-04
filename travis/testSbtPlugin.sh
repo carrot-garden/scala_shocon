@@ -1,7 +1,17 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-if [ ! -z $SBT_VERSION ]; then source test_plugin.sh
-  sbt ++$TRAVIS_SCALA_VERSION publishLocal
+set -e
+
+#
+# verify plugin build
+#
+
+if [ $SBT_VERSION ]; then 
+    
+  sbt -no-colors ++$TRAVIS_SCALA_VERSION publishLocal
+  
   cd plugin
-  sbt ^^$SBT_VERSION 'scripted shocon/basic'
-fi;
+  
+  sbt -no-colors ^^$SBT_VERSION 'scripted shocon/basic'
+  
+fi

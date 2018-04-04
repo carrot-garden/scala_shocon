@@ -13,6 +13,8 @@
 * limitations under the License.
 */
 
+package shared // for native
+
 object AkkaConfig {
 
   val default = """

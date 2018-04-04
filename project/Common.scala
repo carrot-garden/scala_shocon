@@ -2,14 +2,15 @@ import sbt._
 import Keys._
 
 object Common extends AutoPlugin {
+  
   override def trigger = allRequirements
-  override lazy val buildSettings = Seq(
+  
+  override lazy val projectSettings = Seq(
     name := "shocon",
     organization := "org.akka-js",
     version := "0.3.0-SNAPSHOT",
-    scalaVersion := "2.11.11",
-    crossScalaVersions :=
-      Vector("2.11.11", "2.12.4"),
+    scalaVersion := "2.11.12",
+    crossScalaVersions := Seq("2.11.12", "2.12.4"),
     pomExtra := {
       <url>https://github.com/unicredit/shocon</url>
       <licenses>
@@ -42,4 +43,9 @@ object Common extends AutoPlugin {
     },
     credentials += Credentials(Path.userHome / ".ivy2" / "sonatype.credentials")
   )
+  
+  object autoImport {
+    
+  }
+  
 }
